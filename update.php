@@ -10,7 +10,7 @@ $ID = $_GET["ID"];
 
 if ($updateType == "Results") {
     if ($ID == 0) {
-        $sql="INSERT INTO CyberSecurityTestResults (username,Question) VALUES (:username,0)";
+        $sql="INSERT INTO Test_Results (username,Question) VALUES (:username,0)";
         $sth = $dbh->prepare($sql);
         $params = array(':username' =>  $user);
         $dbh->setAttribute( PDO::ATTR_ERRMODE, PDO::ERRMODE_WARNING );
@@ -18,7 +18,7 @@ if ($updateType == "Results") {
         $ID = $dbh->lastInsertId(); 
         $sth = null;
     }
-    $sql = "update CyberSecurityTestResults set Question = :qID, Answer = :aID where RecordID = :RecordID";
+    $sql = "update Test_Results set Question = :qID, Answer = :aID where RecordID = :RecordID";
     $sth = $dbh->prepare($sql);  
     $params = array(':qID' => $QuestionID, ':aID' => $AnswerID, ':RecordID' => $ID);
     $sth->execute($params); 
@@ -36,7 +36,7 @@ if ($updateType == "Question") {
         $iValue = (int)date('W', $date);
     }
     
-    $sql = "update CyberSecurityTestQuestions set $iType = :iType where QuestionID = :qID";
+    $sql = "update Test_Questions set $iType = :iType where QuestionID = :qID";
     $sth = $dbh->prepare($sql);  
     $params = array(':iType' => $iValue, ':qID' => $ID);
     $sth->execute($params); 
@@ -45,7 +45,7 @@ if ($updateType == "Question") {
 
 if ($updateType == "Answer") {
     $iType = mssql_escape($iType);
-    $sql = "update CyberSecurityTestAnswers set $iType = :iType where AnswerID = :aID";
+    $sql = "update Test_Answers set $iType = :iType where AnswerID = :aID";
     $sth = $dbh->prepare($sql);  
     $params = array(':iType' => $iValue, ':aID' => $ID);
     $sth->execute($params); 
