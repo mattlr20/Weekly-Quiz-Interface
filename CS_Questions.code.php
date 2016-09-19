@@ -23,7 +23,7 @@ $date  = mktime(0, 0, 0, $duedt[0], $duedt[1], $duedt[2] );
 $weekofDate  = (int)date('W', $date);
 
 function getAnswers($dbh, $aID, $QuestionID) {
-    $sql="SELECT * FROM CyberSecurityTestAnswers WHERE QuestionID = :qID ORDER BY AnswerID";
+    $sql="SELECT * FROM Test_Answers WHERE QuestionID = :qID ORDER BY AnswerID";
     $sth = $dbh->prepare($sql); 
     $params = array(':qID' => $QuestionID);
     $sth->execute($params);
@@ -34,7 +34,7 @@ function getAnswers($dbh, $aID, $QuestionID) {
 }
 
 if ($action == "add"){
-    $sql="INSERT INTO CyberSecurityTestQuestions (Code_Text,AnswerID,Code_Type,WeekNumber) 
+    $sql="INSERT INTO Test_Questions (Code_Text,AnswerID,Code_Type,WeekNumber) 
         values(:Code_Text,0,:type,:week)";
     $sth = $dbh->prepare($sql); 
     $params = array(
@@ -46,9 +46,9 @@ if ($action == "add"){
     $sth = null;
     
     if ($ddlQType == "TF") {
-        $sql="INSERT INTO CyberSecurityTestAnswers (Code_Text,QuestionID) 
+        $sql="INSERT INTO Test_Answers (Code_Text,QuestionID) 
             values('True',:qID1)
-        INSERT INTO CyberSecurityTestAnswers (Code_Text,QuestionID) 
+        INSERT INTO Test_Answers (Code_Text,QuestionID) 
             values('False',:qID2)";
     $sth = $dbh->prepare($sql); 
     $params = array(
@@ -63,7 +63,7 @@ if ($action == "add"){
 }
 
 if ($action == "addAnswer"){
-    $sql="INSERT INTO CyberSecurityTestAnswers (Code_Text,QuestionID) 
+    $sql="INSERT INTO Test_Answers (Code_Text,QuestionID) 
         values(:text,:qID)";
     $sth = $dbh->prepare($sql); 
     $params = array(
@@ -77,7 +77,7 @@ if ($action == "addAnswer"){
 }
 
 if ($action == "delete") {
-    $sql="DELETE FROM CyberSecurityTestAnswers WHERE AnswerID = :del_ID";
+    $sql="DELETE FROM Test_Answers WHERE AnswerID = :del_ID";
   	$sth = $dbh->prepare($sql);  
 	$params = array(':del_ID' => $del_ID);
     // $rc = sql_debug($sql,$params);
@@ -89,8 +89,8 @@ if ($action == "delete") {
 }
 
 if ($action == "deleteAll") {
-    $sql="DELETE FROM CyberSecurityTestAnswers WHERE QuestionID = :del_ID1
-          DELETE FROM CyberSecurityTestQuestions WHERE QuestionID = :del_ID2";
+    $sql="DELETE FROM Test_Answers WHERE QuestionID = :del_ID1
+          DELETE FROM Test_Questions WHERE QuestionID = :del_ID2";
   	$sth = $dbh->prepare($sql);  
 	$params = array(':del_ID1' => $del_ID, ':del_ID2' => $del_ID);
     // $rc = sql_debug($sql,$params);
@@ -104,7 +104,7 @@ if ($action == "deleteAll") {
 
 //get row for editing
 if ($Edit_ID > 0) {
-    $sql="Select Code_Text as Question, AnswerID as Answer, weeknumber from CyberSecurityTestQuestions where QuestionID = :qID";
+    $sql="Select Code_Text as Question, AnswerID as Answer, weeknumber from Test_Questions where QuestionID = :qID";
     $sth = $dbh->prepare($sql); 
         $params = array(
             ':qID' => $Edit_ID);
@@ -115,7 +115,7 @@ if ($Edit_ID > 0) {
             extract($rs);
         }
     
-    $sql="Select QuestionID, Code_Text, AnswerID from CyberSecurityTestAnswers where QuestionID = :qID";
+    $sql="Select QuestionID, Code_Text, AnswerID from Test_Answers where QuestionID = :qID";
         $sth = $dbh->prepare($sql); 
         $params = array(
             ':qID' => $Edit_ID);
@@ -133,7 +133,7 @@ if ($Edit_ID > 0) {
     // //print_r($week_array);
 }
 if ($view == "all") {
-    $sql="SELECT * FROM CyberSecurityTestQuestions ORDER BY QuestionID";
+    $sql="SELECT * FROM Test_Questions ORDER BY QuestionID";
     $sth = $dbh->prepare($sql); 
     $sth->execute(); 
     $Questions = $sth->fetchAll(PDO::FETCH_ASSOC);
@@ -146,7 +146,7 @@ if ($view == "week") {
     $viewWeek  = (int)date('W', $date);
 
     
-    $sql="SELECT * FROM CyberSecurityTestQuestions where weeknumber = :week ORDER BY QuestionID";
+    $sql="SELECT * FROM Test_Questions where weeknumber = :week ORDER BY QuestionID";
     $sth = $dbh->prepare($sql); 
     $params = array(':week' => $viewWeek);
     $sth->execute($params);
