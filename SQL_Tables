@@ -1,0 +1,26 @@
+use your_database_name
+
+CREATE TABLE Test_Questions
+(
+QuestionID int NOT NULL IDENTITY PRIMARY KEY,
+Code_Text varchar(255) NOT NULL,
+AnswerID int,
+Code_Type varchar(5) NULL,
+WeekNumber tinyint NULL
+);
+
+CREATE TABLE Test_Answers
+(
+AnswerID int NOT NULL IDENTITY PRIMARY KEY,
+Code_Text varchar(255) NOT NULL,
+QuestionID int NOT NULL
+);
+
+CREATE TABLE Test_Results
+(
+RecordID int NOT NULL IDENTITY PRIMARY KEY,
+username varchar(50) NOT NULL,
+datestamp datetime NOT NULL DEFAULT GETDATE(),
+Question int NOT NULL,
+Answer varchar(255) NULL
+);
