@@ -16,7 +16,7 @@ $duedt = explode("/", $ddate);
 $date  = mktime(0, 0, 0, $duedt[0], $duedt[1], $duedt[2] );
 $week  = (int)date('W', $date);
 
-$sql="SELECT * FROM CyberSecurityTestQuestions WHERE WeekNumber = :Week ORDER BY QuestionID";
+$sql="SELECT * FROM Test_Questions WHERE WeekNumber = :Week ORDER BY QuestionID";
 $sth = $dbh->prepare($sql); 
 $params = array(':Week' => $week);
 $sth->execute($params); 
@@ -24,7 +24,7 @@ $Questions = $sth->fetchAll(PDO::FETCH_ASSOC);
 $sth = null;
 
 function getAnswers($dbh, $aID, $QuestionID) {
-    $sql="SELECT * FROM CyberSecurityTestAnswers WHERE QuestionID = :qID ORDER BY AnswerID";
+    $sql="SELECT * FROM Test_Answers WHERE QuestionID = :qID ORDER BY AnswerID";
     $sth = $dbh->prepare($sql); 
     $params = array(':qID' => $QuestionID);
     $sth->execute($params);
@@ -41,7 +41,7 @@ function getUserAnswer($dbh, $QuestionID) {
     $week_start = date('m/d/Y', strtotime('-'.$day.' days'));
     $week_end = date('m/d/Y', strtotime('+'.(6-$day).' days'));
 
-    $sql="SELECT RecordID, Answer FROM CyberSecurityTestResults where username = :username and datestamp >= :startdate and datestamp <= :enddate and Question = :Question";
+    $sql="SELECT RecordID, Answer FROM Test_Results where username = :username and datestamp >= :startdate and datestamp <= :enddate and Question = :Question";
     $sth = $dbh->prepare($sql);
     $params = array(':username' => $user,':startdate' => $week_start,':enddate' => $week_end,':Question' => $QuestionID);
     $sth->execute($params);
