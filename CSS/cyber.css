@@ -1,0 +1,14 @@
+th {background:#1c3180;color:white;} 
+input[type=button],input[type=submit] {font-weight: bold;text-decoration: none;background-color: #EEEEEE;color: #333333;border-top: 1px solid #CCCCCC;border-right: 1px solid #333333;border-bottom: 1px solid #333333;border-left: 1px solid #CCCCCC;cursor: pointer;}
+input[type=button]:hover,input[type=submit]:hover{background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #d1d1d1), color-stop(1, #ffffff) );background:-moz-linear-gradient( center top, #d1d1d1 5%, #ffffff 100% );filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#d1d1d1', endColorstr='#ffffff');background-color:#d1d1d1}
+.dialog{border: 1px solid #333;background: #ffffff;position:fixed;top: 26%;left: 43%;width: 600px;margin-top: -150px;margin-left: -170px;display:none;z-index: 10;background-color: white;}
+.QA_Test{border-radius: 7px;border: 1px solid #333;width: 640px;vertical-align: top;}
+#thanks {position:relative;display:none;font-weight:bold;color:#1c3180;}
+input[type=button],input[type=submit],input[type=text],button,select{-webkit-border-radius: 0 !important;-moz-border-radius: 0 !important;border-radius: 0 !important;}
+table.borderless td,table.borderless th{border:none !important;}
+.date-label{max-width:150px;font-weight:600;padding: 0 5px 0px 5;}
+.date-col{max-width:200px;padding-right:10px;}.answerTable{width:100%;margin:8px 0 0 0;}
+.inline-chart{width:500px;text-align:left;}
+.inline-results{width:600px;text-align:left;}
+.inline-chart,.inline-results,.inline-total{display:inline-table;vertical-align:top;}
+html,body{margin-bottom:10px;}
