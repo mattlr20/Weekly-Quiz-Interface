@@ -1,7 +1,9 @@
 # Weekly-Quiz-Interface
 - Program used for creating and managing questions, answers, and results. 
-- Utilizes PHP, SQL, HTML, CSS, JQuery, JavaScript, and Bootstrap. 
+- Utilizes PHP, SQL, HTML, CSS, JQuery, JavaScript, AJAX, and Bootstrap. 
 - Create and schedule questions a head of time. 
+- Supports Multiple choice, True/False, and Short Answer questions.
+- Calculates all the testing results and displays it using Google charts. 
 
 # Getting Started
 - In auth.php, set hostname, server, database, and password.
