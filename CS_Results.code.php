@@ -13,7 +13,7 @@ $day = (int)date('w', $date);
 $week_start = date('m/d/Y', strtotime('-'.$day.' days', $date));
 $week_end = date('m/d/Y', strtotime('+'.(6-$day).' days', $date));
 
-$sql="SELECT * FROM CyberSecurityTestQuestions where WeekNumber = :WeekNumber";
+$sql="SELECT * FROM Test_Questions where WeekNumber = :WeekNumber";
 $sth = $dbh->prepare($sql); 
 $params = array(':WeekNumber' => $viewWeek);
 $sth->execute($params); 
@@ -40,7 +40,7 @@ foreach ($Questions as $rs) {
 }
 
 function getAnswers($dbh, $aID, $QuestionID) {
-    $sql="SELECT * FROM CyberSecurityTestAnswers WHERE QuestionID = :qID and AnswerID = :aID ORDER BY AnswerID";
+    $sql="SELECT * FROM Test_Answers WHERE QuestionID = :qID and AnswerID = :aID ORDER BY AnswerID";
     $sth = $dbh->prepare($sql); 
     $params = array(':qID' => $QuestionID,':aID' => $aID);
     $sth->execute($params); 
@@ -52,7 +52,7 @@ function getAnswers($dbh, $aID, $QuestionID) {
 
 function getResults($dbh, $startdate, $enddate, $QuestionID) {
     
-    $sql="SELECT Question, Answer FROM CyberSecurityTestResults where datestamp >= :startdate and datestamp <= :enddate and Question = :qID";
+    $sql="SELECT Question, Answer FROM Test_Results where datestamp >= :startdate and datestamp <= :enddate and Question = :qID";
     $sth = $dbh->prepare($sql); 
     $params = array(':startdate' => $startdate,':enddate' => $enddate, ':qID' => $QuestionID);
     $sth->execute($params); 
@@ -104,7 +104,7 @@ function calcTotals($totalEntries, $totalCorrect, $pTotalCorrect) {
 }
 
 if ($EditID > 0) {
-    $sql="SELECT Answer FROM CyberSecurityTestResults where datestamp >= :startdate and datestamp <= :enddate and Question = :EditID";
+    $sql="SELECT Answer FROM Test_Results where datestamp >= :startdate and datestamp <= :enddate and Question = :EditID";
     $sth = $dbh->prepare($sql); 
     $params = array(':startdate' => $week_start,':enddate' => $week_end, ':EditID' => $EditID);
     $sth->execute($params); 
