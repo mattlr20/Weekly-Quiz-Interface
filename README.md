@@ -10,4 +10,4 @@
 - Create the SQL Tables. Execute the sql code located in SQL_Tables.txt. Makes sure you rename the database. 
 - If you would like to rename the tables, make sure you rename them in CS_Test.code.php, CS_Questions.code.php, CS_results.code.php, and update.php.
 
-![alt tag](https://raw.githubusercontent.com/username/projectname/branch/path/to/img.png)
+![Alt text](images/quiz1.jpg?raw=true "Optional Title")
