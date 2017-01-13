@@ -54,9 +54,6 @@ if ($action == "add"){
     $params = array(
         ':qID1' => $Edit_ID, 
         ':qID2' => $Edit_ID);
-    // $rc = sql_debug($sql,$params);
-	// echo $rc;
-	// exit();
     $sth->execute($params); 
     $sth = null;
     }
@@ -69,9 +66,6 @@ if ($action == "addAnswer"){
     $params = array(
         ':text' => $txtNewQuestion,
         ':qID' => $Edit_ID);
-    // $rc = sql_debug($sql,$params);
-	// echo $rc;
-	// exit();
     $sth->execute($params); 
     $sth = null;
 }
@@ -80,9 +74,6 @@ if ($action == "delete") {
     $sql="DELETE FROM Test_Answers WHERE AnswerID = :del_ID";
   	$sth = $dbh->prepare($sql);  
 	$params = array(':del_ID' => $del_ID);
-    // $rc = sql_debug($sql,$params);
-	// echo $rc;
-	// exit();
 	$sth->execute($params);
 	$sth = null;
     $action = "";
@@ -93,9 +84,6 @@ if ($action == "deleteAll") {
           DELETE FROM Test_Questions WHERE QuestionID = :del_ID2";
   	$sth = $dbh->prepare($sql);  
 	$params = array(':del_ID1' => $del_ID, ':del_ID2' => $del_ID);
-    // $rc = sql_debug($sql,$params);
-	// echo $rc;
-	// exit();
 	$sth->execute($params);
 	$sth = null;
     $Edit_ID = 0;
@@ -126,11 +114,9 @@ if ($Edit_ID > 0) {
     function getStartAndEndDate($week, $year) {
         $dto = new DateTime();
         $startDate = $dto->setISODate($year, $week)->format('m/d/Y');
-        //$ret['week_end'] = $dto->modify('+6 days')->format('Y-m-d');
         return $startDate;
     }
     $weeknumber = getStartAndEndDate($weeknumber,date('Y'));
-    // //print_r($week_array);
 }
 if ($view == "all") {
     $sql="SELECT * FROM Test_Questions ORDER BY QuestionID";
@@ -145,7 +131,6 @@ if ($view == "week") {
     $date  = mktime(0, 0, 0, $duedt[0], $duedt[1], $duedt[2] );
     $viewWeek  = (int)date('W', $date);
 
-    
     $sql="SELECT * FROM Test_Questions where weeknumber = :week ORDER BY QuestionID";
     $sth = $dbh->prepare($sql); 
     $params = array(':week' => $viewWeek);
