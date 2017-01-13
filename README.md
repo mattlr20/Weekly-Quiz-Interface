@@ -1,9 +1,13 @@
 # Weekly-Quiz-Interface
 - Program used for creating and managing questions, answers, and results. 
+- I created this for Cyber Security testing at an accounting company, but it can be used for anything!
 - Utilizes PHP, SQL, HTML, CSS, JQuery, JavaScript, AJAX, and Bootstrap. 
-- Create and schedule questions a head of time. 
+- Create and schedule questions months in advance. 
 - Supports Multiple choice, True/False, and Short Answer questions.
 - Calculates all the testing results and displays it using Google charts. 
+- Updates on change using AJAX.
+- Popout Edit and Add Screen
+- Toggle answer visibility with Bootstrap
 
 # Getting Started
 - In auth.php, set hostname, server, database, and password.
